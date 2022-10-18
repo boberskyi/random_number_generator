@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random number generator</title>
+  <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto Condensed', sans-serif;
+      box-sizing: border-box;
+    }
+
+    .wrap {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 25px;
+      background: rgba(130, 55, 202, .6);
+    }
+
+    .wrap h1 {
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    #form {
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      /* background: rgba(130, 55, 202, .6); */
+      padding: 25px;
+      border-radius: 5px;
+    }
+
+    #form input {
+      margin-bottom: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #buttonCounter {
+      cursor: pointer;
+      padding: 10px;
+      font-size: 16px;
+      background: #000;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 5px;
+    }
+
+    input.error {
+      color: #fff;
+      outline: 1px solid rgb(255 0 0);
+      background: rgba(255, 0, 0, .2);
+    }
+
+    .randomNum {
+      color: #000;
+      font-weight: 700;
+      font-size: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1 id="msgBox">Please write minimum and maximum to get a random number</h1>
+    <div id="form">
+      <div class="input__wrap"></div>
+      <input id="minNumber" type="number" placeholder="1" value="1" onfocus="this.value=''" required>
+      <input id="maxNumber" type="number" placeholder="10" value="10" onfocus="this.value=''" required>
+
+      <button id="buttonCounter">Get random</button>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+
+    const minNumber = document.getElementById('minNumber'),
+      maxNumber = document.getElementById('maxNumber'),
+      msgBox = document.getElementById('msgBox'),
+      buttonCounter = document.getElementById('buttonCounter');
+
+    const getRandom = () => {
+      let minNumberVal = Math.ceil(+minNumber.value);
+      let maxNumberVal = Math.floor(+maxNumber.value);
+
+      minNumber.classList.remove("error");
+
+      if (minNumberVal > maxNumberVal) {
+        minNumber.classList.add("error");
+        msgBox.innerHTML = (`Your minimum number: <span class="randomNum">${minNumberVal}</span> is greater then maximum: <span class="randomNum">${maxNumberVal}</span>`);
+      } else {
+        msgBox.innerHTML = (`Your random number is: <span class="randomNum"> ${Math.floor(minNumberVal + Math.random() * (maxNumberVal + 1 - minNumberVal))}</span>`);
+      }
+
+    }
+
+    buttonCounter.addEventListener('click', getRandom);
+  </script>
+</body>
+
+</html>
