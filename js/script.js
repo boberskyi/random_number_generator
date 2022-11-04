@@ -8,15 +8,15 @@ const minNumber = document.getElementById('minNumber'),
 const tstAlrt = () => {
   let text_to_copy = document.querySelector('.randomNum').innerHTML;
 
-  if (!navigator.clipboard){
+  if (!navigator.clipboard) {
     // old browsers
-  } else{
+  } else {
     navigator.clipboard.writeText(text_to_copy).then(
-      function(){
+      function () {
         alert("Copied to clipboard!"); // success
       })
       .catch(
-        function() {
+        function () {
           console.error('Error');
         });
   }
@@ -38,11 +38,6 @@ const getRandom = () => {
   }
 
 }
-
-
-
-
-
 
 
 buttonCounter.addEventListener('click', getRandom);
