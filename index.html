@@ -26,72 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto Condensed', sans-serif;
-      box-sizing: border-box;
-    }
-
-    .wrap {
-      max-width: 100%;
-      width: 100%;
-      margin: 0 auto;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0 25px;
-      background: rgba(130, 55, 202, .6);
-    }
-
-    .wrap h1 {
-      font-size: 22px;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #fff;
-    }
-
-    #form {
-      max-width: 500px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      /* background: rgba(130, 55, 202, .6); */
-      padding: 25px;
-      border-radius: 5px;
-    }
-
-    #form input {
-      margin-bottom: 5px;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    #buttonCounter {
-      cursor: pointer;
-      padding: 10px;
-      font-size: 16px;
-      background: #000;
-      color: #fff;
-      font-weight: 700;
-      border-radius: 5px;
-    }
-
-    input.error {
-      color: #fff;
-      outline: 1px solid rgb(255 0 0);
-      background: rgba(255, 0, 0, .2);
-    }
-
-    .randomNum {
-      color: #000;
-      font-weight: 700;
-      font-size: 40px;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -99,38 +34,16 @@
     <h1 id="msgBox">Please write minimum and maximum to get a random number</h1>
     <div id="form">
       <div class="input__wrap"></div>
-      <input id="minNumber" type="number" placeholder="1" value="1" onfocus="this.value=''" required>
-      <input id="maxNumber" type="number" placeholder="10" value="10" onfocus="this.value=''" required>
+      <input id="minNumber" type="number" placeholder="1" value="1" onfocus="this.value=''" min="0" required>
+      <input id="maxNumber" type="number" placeholder="10" value="10" onfocus="this.value=''" min="0"  required>
 
       <button id="buttonCounter">Get random</button>
     </div>
   </div>
 
-  <script>
-    "use strict";
+  <p>test</p>
 
-    const minNumber = document.getElementById('minNumber'),
-      maxNumber = document.getElementById('maxNumber'),
-      msgBox = document.getElementById('msgBox'),
-      buttonCounter = document.getElementById('buttonCounter');
-
-    const getRandom = () => {
-      let minNumberVal = Math.ceil(+minNumber.value);
-      let maxNumberVal = Math.floor(+maxNumber.value);
-
-      minNumber.classList.remove("error");
-
-      if (minNumberVal > maxNumberVal) {
-        minNumber.classList.add("error");
-        msgBox.innerHTML = (`Your minimum number: <span class="randomNum">${minNumberVal}</span> is greater then maximum: <span class="randomNum">${maxNumberVal}</span>`);
-      } else {
-        msgBox.innerHTML = (`Your random number is: <span class="randomNum"> ${Math.floor(minNumberVal + Math.random() * (maxNumberVal + 1 - minNumberVal))}</span>`);
-      }
-
-    }
-
-    buttonCounter.addEventListener('click', getRandom);
-  </script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
